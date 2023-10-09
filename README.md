@@ -1,1 +1,2 @@
 # Project-K.E.N-2023
+Game Development Project for Dev Class. Is based off of several different horror games and will consist of 1 "Level" hour and a minigame. Everytime you make a change the Github Desktop app will sense it. Simply check the changed files for anything over 100mb before committing and push changes in Current Project Files branch. If you recieve an error undo your committ and try again.
