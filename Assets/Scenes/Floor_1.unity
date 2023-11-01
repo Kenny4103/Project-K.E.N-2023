@@ -32806,8 +32806,12 @@ PrefabInstance:
       value: Wall_Opening (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4008104052939946, guid: d60257130a4859c41bd536a2bb715cfc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0582374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008104052939946, guid: d60257130a4859c41bd536a2bb715cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 105.547
+      value: 105.5636
       objectReference: {fileID: 0}
     - target: {fileID: 4008104052939946, guid: d60257130a4859c41bd536a2bb715cfc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -62455,7 +62459,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
