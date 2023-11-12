@@ -1,70 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DoorScript : MonoBehaviour
 {
-    [SerializeField] private int rayLength = 5;
-    [SerializeField] private LayerMask layerMaskInteract;
-    [SerializeField] private string excludeLayerName = null;
+    public float interactionDistance;
+    public GameObject intText;
+    public string doorOpenAnimName, doorCloseAnimName;
 
-    private myDoorController raycastedObj;
-
-    [SerializeField] private KeyCode openDoorKey = KeyCode.Mouse0;
-
-    [SerializeField] private Image crosshair = null;
-    private bool isCrosshairActive;
-    private bool doOnce;
-
-    private const string interactableTag = "InteractiveObject";
-
-    private void Update()
+    void Update()
     {
-      RaycastHit hit;
-      Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
 
-      int mask = 1 << LayerMask.NameToLayer(excludeLayerName) | layerMaskInteract.value;
-
-      if (Physics.Raycast(transform.position, fwd, out hit, rayLength, mask))
-      {
-        if (hit.collider.CompareTag(interactableTag))
+        if (Physics.Raycast(ray, out hit, interactionDistance))
         {
-          if (!doOnce)
-          {
-            raycastedObj = hit.collider.gameObject.GetComponent<myDoorController>();
-            CrosshairChange(true);
-          }
-          isCrosshairActive = true;
-          doOnce = true;
+            if (hit.collider.gameObject.tag == "Door")
+            {
+                GameObject doorParent = hit.collider.transform.root.gameObject;
+                Animator doorAnim = doorParent.GetComponent<Animator>();
+                intText.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorOpenAnimName))
+                    {
+                        doorAnim.ResetTrigger("Open");
+                        doorAnim.SetTrigger("Close");
+                    }
 
-          if (Input.GetKeyDown(openDoorKey))
-          {
-            raycastedObj.PlayAnimation();
-          }
+                    if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorCloseAnimName))
+                    {
+                        doorAnim.ResetTrigger("Close");
+                        doorAnim.SetTrigger("Open");
+                    }
+                }
+            }
+            else
+            {
+                intText.SetActive(false);
+            }
         }
-      }
-
-      else
-      {
-        if (isCrosshairActive)
+        else
         {
-          CrosshairChange(false);
-          doOnce = false;
+            intText.SetActive(false);
         }
-      }
-    }
-
-    void CrosshairChange(bool on)
-    {
-      if (on && !doOnce)
-      {
-        crosshair.color = Color.red;
-      }
-      else
-      {
-        crosshair.color = Color.white;
-        isCrosshairActive = false;
-      }
     }
 }

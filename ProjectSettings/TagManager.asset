@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - InteractiveObject
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Interact
+  - 
   - Water
   - UI
   - PP
