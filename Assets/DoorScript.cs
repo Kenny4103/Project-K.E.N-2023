@@ -20,7 +20,7 @@ public class DoorScript : MonoBehaviour
                 GameObject doorParent = hit.collider.transform.root.gameObject;
                 Animator doorAnim = doorParent.GetComponent<Animator>();
                 intText.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorOpenAnimName))
                     {
