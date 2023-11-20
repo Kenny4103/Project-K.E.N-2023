@@ -6,17 +6,25 @@ public class TinkerCell : MonoBehaviour
 {
 
     public GameObject Tink_Cell;
+    bool phoneUp;
     // Update is called once per frame
+    private void Start()
+    {
+        Tink_Cell.GetComponent<Animator>().Play("Tink_Start");
+        phoneUp = false;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             Tink_Cell.GetComponent<Animator>().Play("Tink_Up");
+            phoneUp = true;
         }
         
-        if(Input.GetKeyDown(KeyCode.Escape))
+        else if(Input.GetKeyDown(KeyCode.Escape) && phoneUp == true)
         {
             Tink_Cell.GetComponent<Animator>().Play("Tink_Down");
+            phoneUp = false;
         }
     }
 }
