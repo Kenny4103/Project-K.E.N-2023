@@ -20,8 +20,8 @@ public class TinkerCell : MonoBehaviour
             Tink_Cell.GetComponent<Animator>().Play("Tink_Up");
             phoneUp = true;
         }
-        
-        else if(Input.GetKeyDown(KeyCode.Escape) && phoneUp == true)
+
+        else if(Input.GetKeyDown(KeyCode.Q) && phoneUp == true)
         {
             Tink_Cell.GetComponent<Animator>().Play("Tink_Down");
             phoneUp = false;
