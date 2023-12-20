@@ -7,7 +7,7 @@ public class DoorScript : MonoBehaviour
 {
     public float interactionDistance;
     public GameObject intText;
-    public string doorOpenAnimName, doorIdleAnimName;
+    public string doorOpenAnimName, doorIdleAnimName, exitDoorOpenAnimName, exitDoorCloseAnimName;
 
     public Image crosshair = null;
 
@@ -27,13 +27,13 @@ public class DoorScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorOpenAnimName))
+                    if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorOpenAnimName) || doorAnim.GetCurrentAnimatorStateInfo(0).IsName(exitDoorOpenAnimName))
                     {
                         doorAnim.ResetTrigger("Open");
                         doorAnim.SetTrigger("Close");
                     }
 
-                    if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorIdleAnimName))
+                    if (doorAnim.GetCurrentAnimatorStateInfo(0).IsName(doorIdleAnimName) || doorAnim.GetCurrentAnimatorStateInfo(0).IsName(exitDoorCloseAnimName))
                     {
                         doorAnim.ResetTrigger("Close");
                         doorAnim.SetTrigger("Open");
