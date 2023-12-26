@@ -1,27 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ExitDoorCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // No need for Start and Update methods if they are empty
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == "FirstPersonController")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Floor_1");
+            LoadNextScene();
         }
+    }
+
+    void LoadNextScene()
+    {
+        string nextSceneName = "Floor_1";
+        SceneManager.LoadScene(nextSceneName);
     }
 }
